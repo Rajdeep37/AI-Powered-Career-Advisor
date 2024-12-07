@@ -1,0 +1,1 @@
+const data = [{"jobId": "1", "title": "Frontend Developer", "matchScore": 0.6980304718017578}, {"jobId": "2", "title": "Backend Engineer", "matchScore": 0.6759539842605591}, {"jobId": "3", "title": "ML Developer", "matchScore": 0.241163969039917}];

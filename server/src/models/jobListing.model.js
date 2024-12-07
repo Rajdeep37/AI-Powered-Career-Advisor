@@ -5,7 +5,7 @@ const jobListingSchema = new mongoose.Schema({
         website: String,
     },
     location: String,
-    jobType: String,  // e.g., Full-time, Part-time, Remote
+    jobType: String,
     salaryRange: {
         min: Number,
         max: Number,
@@ -14,7 +14,7 @@ const jobListingSchema = new mongoose.Schema({
     requirements: [String],
     postedDate: Date,
     applicationURL: String,
-    source: String,  // e.g., LinkedIn, Indeed
+    source: String,
 });
 
 export const JobListing=new mongoose.model("JobListing",jobListingSchema);
