@@ -8,6 +8,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
   ArrowRight,
   BarChart2,
   BookOpen,
@@ -17,8 +25,12 @@ import {
   Search,
   UserCircle,
 } from "lucide-react";
-
+import { LoginForm } from "@/components/LoginForm.jsx";
+import { useState } from "react";
+import { RegisterForm } from "@/components/RegisterForm";
 export default function Home() {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen,setIsRegisterOpen] = useState(false)
   return (
     <div className="flex flex-col min-h-screen">
       <header className="px-4 lg:px-6 w-full h-16 flex items-center justify-between">
@@ -26,8 +38,21 @@ export default function Home() {
           <BriefcaseIcon className="h-6 w-6 mr-2" />
           <span className="font-bold">Career Advisor</span>
         </div>
-        <div className="">
-          <Button>Login</Button>
+        <div className="flex min-h-screen flex-col items-center justify-center p-24">
+          <Dialog open={isLoginOpen} onOpenChange={setIsLoginOpen}>
+            <DialogTrigger asChild>
+              <Button>Log in</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Log in</DialogTitle>
+                <DialogDescription>
+                  Enter your credentials to access your account.
+                </DialogDescription>
+              </DialogHeader>
+              <LoginForm />
+            </DialogContent>
+          </Dialog>
         </div>
       </header>
       <main className="flex-1">
@@ -44,14 +69,20 @@ export default function Home() {
                 </p>
               </div>
               <div className="w-full max-w-sm space-y-2">
-                <form className="flex space-x-2">
-                  <Input
-                    className="max-w-lg flex-1"
-                    placeholder="Enter your email"
-                    type="email"
-                  />
-                  <Button type="submit">Get Started</Button>
-                </form>
+                <Dialog open={isRegisterOpen} onOpenChange={setIsRegisterOpen}>
+                  <DialogTrigger asChild>
+                    <Button>Get Started</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Get Started</DialogTitle>
+                      <DialogDescription>
+                        Enter your credentials to create your account.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <RegisterForm />
+                  </DialogContent>
+                </Dialog>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   Start your journey today.
                 </p>

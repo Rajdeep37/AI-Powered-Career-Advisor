@@ -1,33 +1,66 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { PersonalInfo } from './Personal'
-import { EducationForm } from './Education'
-import { ExperienceForm } from './Experience'
-import { SkillsProjectsForm } from './Skills'
-import { PreferencesForm } from './Preferences'
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { PersonalInfo } from "./Personal";
+import { EducationForm } from "./Education";
+import { ExperienceForm } from "./Experience";
+import { SkillsProjectsForm } from "./Skills";
+import { PreferencesForm } from "./Preferences";
+import useAuthStore from "@/actions/store";
 
 export default function CreateProfilePage() {
-  const [activeTab, setActiveTab] = useState("personal")
-
+  const [activeTab, setActiveTab] = useState("personal");
+  const {user}=useAuthStore()
+  let userData=user
+  
   const handleSubmit = (event) => {
-    event.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted")
-  }
+    event.preventDefault();
+    console.log("Form submitted");
+  };
 
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">Create Your Profile</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
+          Create Your Profile
+        </h1>
         <form onSubmit={handleSubmit} className="space-y-8">
-          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-8">
+          <Tabs
+            value={activeTab}
+            onValueChange={setActiveTab}
+            className="space-y-8"
+          >
             <TabsList className="grid w-full grid-cols-5 bg-gray-800 rounded-lg p-1">
-              <TabsTrigger value="personal" className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all">Personal</TabsTrigger>
-              <TabsTrigger value="education" className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all">Education</TabsTrigger>
-              <TabsTrigger value="experience" className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all">Experience</TabsTrigger>
-              <TabsTrigger value="skills" className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all">Skills & Projects</TabsTrigger>
-              <TabsTrigger value="preferences" className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all">Preferences</TabsTrigger>
+              <TabsTrigger
+                value="personal"
+                className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all"
+              >
+                Personal
+              </TabsTrigger>
+              <TabsTrigger
+                value="education"
+                className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all"
+              >
+                Education
+              </TabsTrigger>
+              <TabsTrigger
+                value="experience"
+                className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all"
+              >
+                Experience
+              </TabsTrigger>
+              <TabsTrigger
+                value="skills"
+                className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all"
+              >
+                Skills & Projects
+              </TabsTrigger>
+              <TabsTrigger
+                value="preferences"
+                className="data-[state=active]:bg-gray-700 data-[state=active]:text-white rounded-md transition-all"
+              >
+                Preferences
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="personal" className="space-y-4">
               <PersonalInfo />
@@ -50,10 +83,16 @@ export default function CreateProfilePage() {
               type="button"
               variant="outline"
               onClick={() => {
-                const tabs = ["personal", "education", "experience", "skills", "preferences"]
-                const currentIndex = tabs.indexOf(activeTab)
+                const tabs = [
+                  "personal",
+                  "education",
+                  "experience",
+                  "skills",
+                  "preferences",
+                ];
+                const currentIndex = tabs.indexOf(activeTab);
                 if (currentIndex > 0) {
-                  setActiveTab(tabs[currentIndex - 1])
+                  setActiveTab(tabs[currentIndex - 1]);
                 }
               }}
               className="bg-gray-800 text-white hover:bg-gray-700"
@@ -63,12 +102,18 @@ export default function CreateProfilePage() {
             <Button
               type="button"
               onClick={() => {
-                const tabs = ["personal", "education", "experience", "skills", "preferences"]
-                const currentIndex = tabs.indexOf(activeTab)
+                const tabs = [
+                  "personal",
+                  "education",
+                  "experience",
+                  "skills",
+                  "preferences",
+                ];
+                const currentIndex = tabs.indexOf(activeTab);
                 if (currentIndex < tabs.length - 1) {
-                  setActiveTab(tabs[currentIndex + 1])
+                  setActiveTab(tabs[currentIndex + 1]);
                 } else {
-                  handleSubmit(new Event('submit'))
+                  handleSubmit(new Event("submit"));
                 }
               }}
               className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
@@ -79,6 +124,5 @@ export default function CreateProfilePage() {
         </form>
       </div>
     </div>
-  )
+  );
 }
-

@@ -17,16 +17,16 @@ const generateAccessAndRefreshTokens= async(userId)=>{
 }
 
 const registerUser= asyncHandler ( async (req,res)=>{
-    const {name,email,password}=req.body
+    const {fName,lName,email,password}=req.body
     
-    if(!name || !email || !password)
+    if(!fName || !lName || !email || !password)
     {
         throw new ApiError(400,"All fields are required")
     }
     
     const existingUser= await User.findOne({email})
     if(existingUser){
-        throw new ApiError(409,"User with email or username already exists")
+        throw new ApiError(409,"User with email")
     }
 
     /*const avatarLocalFilePath=req.files?.avatar[0]?.path;
@@ -48,7 +48,10 @@ const registerUser= asyncHandler ( async (req,res)=>{
     */
 
     const user= await User.create({
-        name,
+        name:{
+            firstName:fName,
+            lastName: lName
+        },
         email,
         password
     })
@@ -90,7 +93,8 @@ const loginUser = asyncHandler ( async(req,res)=>{
 
     const options={
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: 'None',
     }
 
     return res
@@ -104,6 +108,20 @@ const loginUser = asyncHandler ( async(req,res)=>{
                 user:loggedInUser,accessToken,refreshToken
             },
             "User logged In successfully"
+        )
+    )
+})
+
+const authenticatedUser= asyncHandler ( async (req,res)=>{
+    return res
+    .status(200)
+    .json(
+        new ApiResponse(
+            200,
+            {
+                user:req.user
+            },
+            "User Details Fetched!!"
         )
     )
 })
@@ -223,6 +241,7 @@ const changeCurrentPassword= asyncHandler( async (req,res)=>{
 export {registerUser,
         loginUser ,
         logoutUser,
+        authenticatedUser,
         updateProfile,
         refreshAccessToken       
 }

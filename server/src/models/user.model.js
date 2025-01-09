@@ -59,6 +59,10 @@ const userSchema = new mongoose.Schema({
         },
         industries: [String],
     },
+    profileSetup:{
+        type: Boolean,
+        default:false
+    },
     refreshToken:{
         type:String,
     }

@@ -1,10 +1,10 @@
 import axios from "axios";
-export async function jobSearch(title){
+export async function jobSearch(){
   const options = {
     method: 'GET',
     url: 'https://linkedin-data-api.p.rapidapi.com/search-jobs',
     params: {
-      keywords: title,
+      keywords: "Software Engineer",
       locationId: '102713980',
       datePosted: 'anyTime',
       sort: 'mostRelevant'
@@ -23,3 +23,5 @@ export async function jobSearch(title){
     console.error(error);
   }
 }
+
+// jobSearch();
