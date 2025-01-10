@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { register } from "@/actions/auth";
-import useAuthStore from "@/actions/store";
+import useAuthStore from "@/zustand/authStore";
 
 export function RegisterForm() {
   //const {user, setUser } = useAuthStore();

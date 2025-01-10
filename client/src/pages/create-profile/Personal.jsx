@@ -7,12 +7,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import useAuthStore from "@/actions/store";
-import { useState } from "react";
+import useAuthStore from "@/zustand/authStore";
+import { api } from "@/utils/constants";
+
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 export function PersonalInfo() {
-  const { user, setUser } = useAuthStore();
-  const [firstName,setFirstName]=useState(user.name.firstName)
-  const [lastName,setLastName]=useState(user.name.lastName)
+  const { user } = useAuthStore();
+  const [firstName, setFirstName] = useState(user.name.firstName);
+  const [lastName, setLastName] = useState(user.name.lastName);
+  const handleSubmit=async ()=>{
+    const response=api.post("/users/updatePersonal",{
+      firstName,lastName
+    })
+    console.log((await response).data.data.user)
+  }
   return (
     <Card className="bg-gray-900 border-gray-800">
       <CardHeader>
@@ -34,6 +43,9 @@ export function PersonalInfo() {
               name="firstName"
               className="bg-gray-800 text-white border-gray-700"
               value={user.name.firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
             />
           </div>
           <div className="space-y-2">
@@ -45,7 +57,9 @@ export function PersonalInfo() {
               name="lastName"
               className="bg-gray-800 text-white border-gray-700"
               value={user.name.lastName}
-              
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
             />
           </div>
         </div>
@@ -57,7 +71,6 @@ export function PersonalInfo() {
             id="email"
             name="email"
             type="email"
-            
             className="bg-gray-800 text-white border-gray-700"
             defaultValue={user.email}
             disabled
@@ -86,6 +99,15 @@ export function PersonalInfo() {
             type="file"
             className="bg-gray-800 text-white border-gray-700"
           />
+        </div>
+        <div className="space-y-2">
+        <Button
+              type="button"
+              onClick={handleSubmit}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
+            >
+              Submit
+            </Button>
         </div>
       </CardContent>
     </Card>

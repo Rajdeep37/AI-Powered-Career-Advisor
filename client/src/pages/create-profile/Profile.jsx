@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PersonalInfo } from "./Personal";
@@ -6,17 +6,18 @@ import { EducationForm } from "./Education";
 import { ExperienceForm } from "./Experience";
 import { SkillsProjectsForm } from "./Skills";
 import { PreferencesForm } from "./Preferences";
-import useAuthStore from "@/actions/store";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateProfilePage() {
   const [activeTab, setActiveTab] = useState("personal");
-  const {user}=useAuthStore()
-  let userData=user
-  
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log("Form submitted");
-  };
+  const [doneClick,setDoneClick] = useState(false)
+  const navigate=useNavigate()
+  useEffect(()=>{
+    if(activeTab==="preferences"){
+      navigate("/dashboard")
+    }
+    setDoneClick(false)
+  },[doneClick])
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -24,7 +25,6 @@ export default function CreateProfilePage() {
         <h1 className="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text">
           Create Your Profile
         </h1>
-        <form onSubmit={handleSubmit} className="space-y-8">
           <Tabs
             value={activeTab}
             onValueChange={setActiveTab}
@@ -102,6 +102,7 @@ export default function CreateProfilePage() {
             <Button
               type="button"
               onClick={() => {
+                setDoneClick(true)
                 const tabs = [
                   "personal",
                   "education",
@@ -109,19 +110,18 @@ export default function CreateProfilePage() {
                   "skills",
                   "preferences",
                 ];
+                
                 const currentIndex = tabs.indexOf(activeTab);
                 if (currentIndex < tabs.length - 1) {
                   setActiveTab(tabs[currentIndex + 1]);
-                } else {
-                  handleSubmit(new Event("submit"));
-                }
+                } 
+                
               }}
               className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
             >
-              {activeTab === "preferences" ? "Submit" : "Next"}
+              {activeTab === "preferences" ? "Done" : "Next"}
             </Button>
           </div>
-        </form>
       </div>
     </div>
   );

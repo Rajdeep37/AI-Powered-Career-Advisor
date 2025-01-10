@@ -152,16 +152,48 @@ const logoutUser= asyncHandler ( async (req,res)=>{
 
 })
 
-const updateProfile= asyncHandler ( async (req,res)=>{
-    const {education,experience,skills,projects,interests,jobPreferences}=req.body
-    
+const updatePersonal= asyncHandler ( async (req,res)=>{
+    const {personal}=req.body
     const user=req.user
-    if(education){
-        user.education=education
+    if(personal){
+        user.name=personal
     }
-    if(experience){
-        user.experience=experience
+
+    await user.save();
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{user},"Personal Details Updated"))
+})
+
+const updateEducation= asyncHandler ( async (req,res)=>{
+    const {educations}=req.body
+    const user=req.user
+    if(educations){
+        user.education=educations
     }
+
+    await user.save();
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{user},"Education Details Updated"))
+})
+
+const updateExperience= asyncHandler ( async (req,res)=>{
+    const {experiences}=req.body
+    const user=req.user
+    if(experiences){
+        user.experience=experiences
+    }
+
+    await user.save();
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{user},"Experience Details Updated"))
+})
+
+const updateSkills= asyncHandler ( async (req,res)=>{
+    const {skills,projects,interests}=req.body
+    const user=req.user
     if(skills){
         user.skills=skills
     }
@@ -171,18 +203,24 @@ const updateProfile= asyncHandler ( async (req,res)=>{
     if(interests){
         user.interests=interests
     }
-    if(jobPreferences){
-        user.jobPreferences=jobPreferences
+    await user.save();
+    return res
+    .status(200)
+    .json(new ApiResponse(200,{user},"Skill Details Updated"))
+})
+
+const updatePreferences= asyncHandler ( async (req,res)=>{
+    const {preferences}=req.body
+    const user=req.user
+    if(preferences){
+        user.jobPreferences=preferences
     }
 
     await user.save();
     return res
     .status(200)
-    .json(new ApiResponse(200,{user},"User Profile Updated Successfully"))
+    .json(new ApiResponse(200,{user},"Personal Details Updated"))
 })
-
-
-
 
 const refreshAccessToken= asyncHandler ( async (req,res)=>{
     const incomingRefreshToken=req.cookies.refreshToken || req.body.refreshToken
@@ -242,6 +280,10 @@ export {registerUser,
         loginUser ,
         logoutUser,
         authenticatedUser,
-        updateProfile,
+        updatePreferences,
+        updateSkills,
+        updateExperience,
+        updateEducation,
+        updatePersonal,
         refreshAccessToken       
 }

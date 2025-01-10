@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "@/actions/store";
+import useAuthStore from "@/zustand/authStore";
 const ProtectedRoute = ({ children }) => {
     const { fetchUser,isAuthenticated } = useAuthStore();
     const navigate = useNavigate();

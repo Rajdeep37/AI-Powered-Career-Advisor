@@ -5,7 +5,7 @@ import MatchedJobsPage from './pages/matched-jobs/Jobs';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useEffect } from 'react';
-import useAuthStore from './actions/store';
+import useAuthStore from './zustand/authStore';
 
 function App() {
   const { fetchUser } = useAuthStore();
