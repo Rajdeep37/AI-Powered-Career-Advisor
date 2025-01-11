@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import CreateProfilePage from './pages/create-profile/Profile';
 import MatchedJobsPage from './pages/matched-jobs/Jobs';
 import Dashboard from './pages/dashboard/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedRoute from './pages/ProtectedRoute';
 import { useEffect } from 'react';
 import useAuthStore from './zustand/authStore';
 

@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import useFormStore from "@/zustand/formStore";
 import { api } from "@/utils/constants";
 
 export function EducationForm() {
