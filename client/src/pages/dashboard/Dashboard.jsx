@@ -24,7 +24,6 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white p-6">
       <div className="max-w-[2000px] mx-auto">
         <div className="flex flex-col lg:flex-row gap-6">
-          {/* Left sidebar */}
           <div className="w-full lg:w-1/4 space-y-6">
             <div className="sticky top-6 space-y-6">
               <ProfileSection user={user} />
@@ -43,7 +42,6 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Main content */}
           <div className="w-full lg:w-3/4 space-y-6">
             <MarkdownSummary />
             <ActionCards />

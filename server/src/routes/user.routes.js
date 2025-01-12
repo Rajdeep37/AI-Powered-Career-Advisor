@@ -10,6 +10,7 @@ import {
   updateExperience,
   updateEducation,
   updatePersonal,
+  generateSummary,
 } from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
@@ -35,7 +36,7 @@ router.route("/updateEducation").post(verifyJWT, updateEducation);
 router.route("/updateExperience").post(verifyJWT, updateExperience);
 router.route("/updateSkills").post(verifyJWT, updateSkills);
 router.route("/updatePreferences").post(verifyJWT, updatePreferences);
-
+router.route("/generateSummary").post(verifyJWT,generateSummary)
 router.route("/refresh-token").post(refreshAccessToken);
 
 export default router;

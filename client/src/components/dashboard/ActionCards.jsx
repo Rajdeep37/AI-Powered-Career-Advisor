@@ -1,9 +1,19 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Briefcase, GraduationCap, Users } from 'lucide-react'
-import jobsImage from '../../../public/assets/jobs.jpeg'
-import coursesImage from '../../../public/assets/courses.jpeg'
-import ShineBorder from "../ui/shine-border"
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Briefcase, GraduationCap, Users } from "lucide-react";
+import jobsImage from "../../../public/assets/jobs.jpeg";
+import coursesImage from "../../../public/assets/courses.jpeg";
+import resumeImage from "../../../public/assets/resume.jpeg"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+
+
 export function ActionCards() {
   const cards = [
     {
@@ -19,23 +29,25 @@ export function ActionCards() {
       image: coursesImage,
     },
     {
-      title: "Network",
-      description: "Connect with industry professionals",
+      title: "Resume Analysis",
+      description: "Upload your resume and get your profile reviewed!!",
       icon: Users,
-      image: "/placeholder.svg?height=150&width=250",
+      image: resumeImage,
       gradient: "from-emerald-500/10 to-emerald-900/20",
     },
-  ]
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {cards.map((card, index) => (
-        <Card 
-          key={index} 
+        <Card
+          key={index}
           className="group bg-gray-900/40 border-gray-800 backdrop-blur-sm hover:bg-gray-900/60 transition-all duration-300 text-white"
         >
           <CardContent className="p-6">
-            <div className={`rounded-lg overflow-hidden mb-4 bg-gradient-to-br ${card.gradient}`}>
+            <div
+              className={`rounded-lg overflow-hidden mb-4 bg-gradient-to-br ${card.gradient}`}
+            >
               <img
                 src={card.image}
                 alt={card.title}
@@ -50,19 +62,31 @@ export function ActionCards() {
                 <h3 className="font-semibold">{card.title}</h3>
               </div>
               <p className="text-sm text-gray-400">{card.description}</p>
-              <Button 
-                variant="ghost" 
-                className="w-full group/button hover:bg-gray-800"
-              >
-                <span>View More</span>
-                <ArrowRight className="w-4 h-4 ml-2 group-hover/button:translate-x-1 transition-transform" />
-              </Button>
+
+              <Sheet>
+                <SheetTrigger>
+                  <Button
+                    variant="ghost"
+                    className="w-full group/button hover:bg-gray-800"
+                  >
+                    <span>View More</span>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover/button:translate-x-1 transition-transform" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Are you absolutely sure?</SheetTitle>
+                    <SheetDescription>
+                      This action cannot be undone. This will permanently delete
+                      your account and remove your data from our servers.
+                    </SheetDescription>
+                  </SheetHeader>
+                </SheetContent>
+              </Sheet>
             </div>
           </CardContent>
         </Card>
-        
       ))}
     </div>
-  )
+  );
 }
-
