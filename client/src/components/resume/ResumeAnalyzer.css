@@ -1,0 +1,202 @@
+/* ResumeAnalyzer.css */
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --border-color: #bdc3c7;
+    --success-color: #2ecc71;
+    --error-color: #e74c3c;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .resume-analyzer {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 100%;
+    max-width: 700px;
+    margin: 50px auto;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .resume-analyzer:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .resume-analyzer h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  
+  .form-group label {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    display: block;
+    text-align: left;
+    font-weight: 600;
+  }
+  
+  input[type="file"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+  }
+  
+  input[type="file"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    outline: none;
+  }
+  
+  input[type="file"] {
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+  
+  input[type="file"]::file-selector-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="file"]::file-selector-button:hover {
+    background-color: #2980b9;
+  }
+  
+  textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2334495e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+  }
+  
+  .analyze-btn {
+    width: 100%;
+    padding: 16px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .analyze-btn:disabled {
+    background-color: var(--border-color);
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  .analyze-btn:hover:not(:disabled) {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  }
+  
+  .result {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #f8f9fa;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    text-align: left;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+  
+  .result h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 700;
+  }
+  
+  .result p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    line-height: 1.6;
+    word-wrap: break-word;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .resume-analyzer {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .result {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .resume-analyzer {
+      padding: 30px;
+      margin: 30px auto;
+    }
+  
+    .resume-analyzer h2 {
+      font-size: 2rem;
+    }
+  
+    .form-group label {
+      font-size: 1rem;
+    }
+  
+    input[type="file"],
+    textarea,
+    select,
+    .analyze-btn {
+      font-size: 1rem;
+    }
+  }
+  
+  
