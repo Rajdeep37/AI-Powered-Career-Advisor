@@ -2,13 +2,16 @@ import { ProfileSection } from "@/components/dashboard/ProfileSection";
 import { SkillsSection } from "@/components/dashboard/SkillsSection";
 import { PreferencesSection } from "@/components/dashboard/PreferencesSection";
 import { MarkdownSummary } from "@/components/dashboard/MarkdownSummary";
-import { ActionCards } from "@/components/dashboard/ActionCards";
+import { ActionCard } from "@/components/dashboard/ActionCards";
 import { NetworkingSection } from "@/components/dashboard/NetworkingSection";
 import useAuthStore from "@/zustand/authStore";
 import { useEffect } from "react";
 import { EducationSection } from "@/components/dashboard/EducationSection";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { Briefcase } from "lucide-react";
+import { GraduationCap } from "lucide-react";
+import { Users } from "lucide-react";
 
 export default function Dashboard() {
   const { user, fetchUser } = useAuthStore();
@@ -20,6 +23,29 @@ export default function Dashboard() {
     fetchUser;
     console.log(user);
   }, []);
+
+  const cards = [
+    {
+      title: "Find Jobs",
+      description: "Explore opportunities matching your profile",
+      icon: Briefcase,
+      image: "jobs",
+      url:"/matched-jobs"
+    },
+    {
+      title: "Skill Development",
+      description: "Enhance your professional toolkit",
+      icon: GraduationCap,
+      image: "courses",
+      url:"/matched-courses"
+    },
+    {
+      title: "Resume Analysis",
+      description: "Upload your resume and get your profile reviewed!!",
+      icon: Users,
+      image: "resume",
+    },
+  ];
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white p-6">
       <div className="max-w-[2000px] mx-auto">
@@ -44,7 +70,9 @@ export default function Dashboard() {
 
           <div className="w-full lg:w-3/4 space-y-6">
             <MarkdownSummary />
-            <ActionCards />
+            <ActionCard card={cards[0]} />
+            <ActionCard card={cards[1]}/>
+            <ActionCard card={cards[2]}/>
             <NetworkingSection />
           </div>
         </div>

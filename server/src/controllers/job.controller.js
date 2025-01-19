@@ -1,7 +1,8 @@
 import { asyncHandler } from "../utils/asyncHandler";
 
-const getJobs= asyncHandler(async(req,res)=>{
+const getMatchedJobs= asyncHandler(async(req,res)=>{
+    const user=req.user
     
 })
 
-export {getJobs}
+export {getMatchedJobs}

@@ -1,17 +1,18 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';
-import CreateProfilePage from './pages/create-profile/Profile';
-import MatchedJobsPage from './pages/matched-jobs/Jobs';
-import Dashboard from './pages/dashboard/Dashboard';
-import ProtectedRoute from './pages/ProtectedRoute';
-import { useEffect } from 'react';
-import useAuthStore from './zustand/authStore';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Home from "./pages/Home";
+import CreateProfilePage from "./pages/create-profile/Profile";
+import Dashboard from "./pages/dashboard/Dashboard";
+import ProtectedRoute from "./pages/ProtectedRoute";
+import { useEffect } from "react";
+import useAuthStore from "./zustand/authStore";
+import Jobs from "./pages/matched-jobs/Jobs";
+import Courses from "./pages/courses/Courses";
 
 function App() {
   const { fetchUser } = useAuthStore();
 
   useEffect(() => {
-    fetchUser(); 
+    fetchUser();
   }, [fetchUser]);
 
   const router = createBrowserRouter([
@@ -37,7 +38,26 @@ function App() {
     },
     {
       path: "/matched-jobs",
-      element: <MatchedJobsPage />,
+      element: (
+        <ProtectedRoute>
+          <Jobs />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/matched-courses",
+      element: (
+        <ProtectedRoute>
+          <Courses />
+        </ProtectedRoute>
+      ),
+    },
+    {
+      path: "/resume",
+      element: (
+        <ProtectedRoute>
+        </ProtectedRoute>
+      ),
     },
   ]);
 
