@@ -1,27 +1,29 @@
 import axios from "axios";
-export async function jobSearch(){
+const jobSearch = async (query) => {
   const options = {
-    method: 'GET',
-    url: 'https://linkedin-data-api.p.rapidapi.com/search-jobs',
+    method: "GET",
+    url: "https://linkedin-data-scraper.p.rapidapi.com/search_jobs",
     params: {
-      keywords: "Software Engineer",
-      locationId: '102713980',
-      datePosted: 'anyTime',
-      sort: 'mostRelevant'
+      query: query,
+      page: "1",
+      searchLocationId: "102713980",
+      sortBy: "DD",
     },
     headers: {
-      'x-rapidapi-key': 'a1b937cc71msh8fc5beb0fcfdf09p12b55bjsnca363a90ff79',
-      'x-rapidapi-host': 'linkedin-data-api.p.rapidapi.com'
-    }
+      "x-rapidapi-key": process.env.JOB_API_KEY,
+      "x-rapidapi-host": process.env.JOB_API_HOST,
+       
+    },
   };
-  
+
   try {
     const response = await axios.request(options);
-    console.log(response.data);
-    //return response.data;
+    return response.data.response
+    //console.log(response.data.response);
   } catch (error) {
     console.error(error);
   }
-}
+};
 
-// jobSearch();
+export default jobSearch
+//jobSearch("Software Developer")

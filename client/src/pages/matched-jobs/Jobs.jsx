@@ -1,50 +1,70 @@
 import { JobCard } from '@/components/JobCard'
+import { api } from '@/utils/constants'
 import { Search } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
-const jobs = [
-  {
-    id: 1,
-    title: 'Frontend Developer',
-    company: 'TechCorp',
-    location: 'San Francisco, CA',
-    type: 'Full-time',
-    postedDate: '2 days ago'
-  },
-  {
-    id: 2,
-    title: 'Backend Engineer',
-    company: 'DataSystems',
-    location: 'New York, NY',
-    type: 'Full-time',
-    postedDate: '1 week ago'
-  },
-  {
-    id: 3,
-    title: 'UX Designer',
-    company: 'CreativeMinds',
-    location: 'Los Angeles, CA',
-    type: 'Contract',
-    postedDate: '3 days ago'
-  },
-  {
-    id: 4,
-    title: 'DevOps Specialist',
-    company: 'CloudNine',
-    location: 'Remote',
-    type: 'Full-time',
-    postedDate: '5 days ago'
-  },
-  {
-    id: 5,
-    title: 'Data Scientist',
-    company: 'AI Innovations',
-    location: 'Boston, MA',
-    type: 'Part-time',
-    postedDate: '1 day ago'
-  }
-]
-
+// const jobs = [
+//   {
+//     id: 1,
+//     title: 'Frontend Developer',
+//     company: 'TechCorp',
+//     location: 'San Francisco, CA',
+//     type: 'Full-time',
+//     postedDate: '2 days ago'
+//   },
+//   {
+//     id: 2,
+//     title: 'Backend Engineer',
+//     company: 'DataSystems',
+//     location: 'New York, NY',
+//     type: 'Full-time',
+//     postedDate: '1 week ago'
+//   },
+//   {
+//     id: 3,
+//     title: 'UX Designer',
+//     company: 'CreativeMinds',
+//     location: 'Los Angeles, CA',
+//     type: 'Contract',
+//     postedDate: '3 days ago'
+//   },
+//   {
+//     id: 4,
+//     title: 'DevOps Specialist',
+//     company: 'CloudNine',
+//     location: 'Remote',
+//     type: 'Full-time',
+//     postedDate: '5 days ago'
+//   },
+//   {
+//     id: 5,
+//     title: 'Data Scientist',
+//     company: 'AI Innovations',
+//     location: 'Boston, MA',
+//     type: 'Part-time',
+//     postedDate: '1 day ago'
+//   }
+// ]
 export default function Jobs() {
+  const [jobs, setJobs] = useState([])
+
+  const fetchJobs = async () => {
+    try {
+      const response = await api.get("jobs/getJobs", {
+        params: { query: "Software Developer" }
+      });
+      //setJobs(response.data)
+      setJobs(response.data.data.filteredJobs)
+    } catch (error) {
+      console.error("Error fetching jobs:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchJobs()
+    console.log(jobs)
+  }, [])
+
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="bg-gray-900 py-6">
@@ -64,12 +84,11 @@ export default function Jobs() {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {jobs.map((job) => (
-            <JobCard key={job.id} {...job} />
+          {jobs.map((job, index) => (
+            <JobCard key={index} {...job} />
           ))}
         </div>
       </main>
     </div>
   )
 }
-
