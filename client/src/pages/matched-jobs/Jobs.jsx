@@ -2,52 +2,10 @@ import { JobCard } from '@/components/JobCard'
 import { api } from '@/utils/constants'
 import { Search } from 'lucide-react'
 import { useEffect, useState } from 'react'
-
-// const jobs = [
-//   {
-//     id: 1,
-//     title: 'Frontend Developer',
-//     company: 'TechCorp',
-//     location: 'San Francisco, CA',
-//     type: 'Full-time',
-//     postedDate: '2 days ago'
-//   },
-//   {
-//     id: 2,
-//     title: 'Backend Engineer',
-//     company: 'DataSystems',
-//     location: 'New York, NY',
-//     type: 'Full-time',
-//     postedDate: '1 week ago'
-//   },
-//   {
-//     id: 3,
-//     title: 'UX Designer',
-//     company: 'CreativeMinds',
-//     location: 'Los Angeles, CA',
-//     type: 'Contract',
-//     postedDate: '3 days ago'
-//   },
-//   {
-//     id: 4,
-//     title: 'DevOps Specialist',
-//     company: 'CloudNine',
-//     location: 'Remote',
-//     type: 'Full-time',
-//     postedDate: '5 days ago'
-//   },
-//   {
-//     id: 5,
-//     title: 'Data Scientist',
-//     company: 'AI Innovations',
-//     location: 'Boston, MA',
-//     type: 'Part-time',
-//     postedDate: '1 day ago'
-//   }
-// ]
+import Loader from '@/components/Loader'
 export default function Jobs() {
   const [jobs, setJobs] = useState([])
-
+  const [isLoading,setIsLoading] = useState(true)
   const fetchJobs = async () => {
     try {
       const response = await api.get("jobs/getJobs", {
@@ -55,6 +13,7 @@ export default function Jobs() {
       });
       //setJobs(response.data)
       setJobs(response.data.data.filteredJobs)
+      setIsLoading(false)
     } catch (error) {
       console.error("Error fetching jobs:", error)
     }
@@ -69,9 +28,15 @@ export default function Jobs() {
     <div className="min-h-screen bg-black text-white">
       <header className="bg-gray-900 py-6">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold text-center text-blue-400">Job Listings</h1>
+          <h1 className="text-3xl font-bold text-center text-blue-400">Jobs</h1>
         </div>
       </header>
+      {isLoading ? (
+        <div className=' flex items-center justify-center py-28'>
+          <Loader />
+        </div>
+        
+      ) : (
       <main className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <div className="relative">
@@ -89,6 +54,7 @@ export default function Jobs() {
           ))}
         </div>
       </main>
+    )}
     </div>
   )
 }

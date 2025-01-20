@@ -21,7 +21,9 @@ const jobSearch = async (query) => {
     return response.data.response
     //console.log(response.data.response);
   } catch (error) {
+    
     console.error(error);
+    return null
   }
 };
 
