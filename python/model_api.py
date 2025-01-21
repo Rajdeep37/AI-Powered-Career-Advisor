@@ -3,10 +3,12 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from PyPDF2 import PdfReader
 from flask_cors import CORS
-
+import os
 # Load environment variables
 load_dotenv()
-genai.configure(api_key="")
+
+api_key = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 app = Flask(__name__)

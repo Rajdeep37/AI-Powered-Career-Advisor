@@ -28,6 +28,7 @@ import {
 import { LoginForm } from "@/components/create-profile/LoginForm.jsx";
 import { useState } from "react";
 import { RegisterForm } from "@/components/create-profile/RegisterForm";
+
 export default function Home() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen,setIsRegisterOpen] = useState(false)

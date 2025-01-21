@@ -44,6 +44,7 @@ export default function Dashboard() {
       description: "Upload your resume and get your profile reviewed!!",
       icon: Users,
       image: "resume",
+      url:"/resume"
     },
   ];
   return (

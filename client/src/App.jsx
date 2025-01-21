@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useAuthStore from "./zustand/authStore";
 import Jobs from "./pages/matched-jobs/Jobs";
 import Courses from "./pages/courses/Courses";
+import ResumeAnalyzer from "./components/resume/ResumeAnalyzer";
 
 function App() {
   const { fetchUser } = useAuthStore();
@@ -56,6 +57,7 @@ function App() {
       path: "/resume",
       element: (
         <ProtectedRoute>
+          <ResumeAnalyzer />
         </ProtectedRoute>
       ),
     },
