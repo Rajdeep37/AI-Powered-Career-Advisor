@@ -2,6 +2,10 @@ import { CalendarDays, MapPin, Briefcase } from 'lucide-react'
 import { Button } from './ui/button'
 
 export function JobCard({ title, companyUniversalName, formattedLocation, formattedEmploymentStatus, formattedExperienceLevel,companyApplyUrl,jobPostingUrl }) {
+  
+  const handleClick=()=>{
+    window.location.href = jobPostingUrl;
+  }
   return (
     <div className="bg-gray-900 text-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-gray-800 hover:border-gray-700">
       <h2 className="text-xl font-semibold mb-2 text-blue-400">{title}</h2>
@@ -24,7 +28,7 @@ export function JobCard({ title, companyUniversalName, formattedLocation, format
                 <Button
                   type="button"
                   className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600"
-                  onClick={() => (window.location.href = {jobPostingUrl})}
+                  onClick={handleClick}
                 >
                   View
                 </Button>

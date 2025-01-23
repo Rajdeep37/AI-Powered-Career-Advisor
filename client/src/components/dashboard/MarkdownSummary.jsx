@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FileText } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { baseURL } from "@/utils/constants";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -43,6 +43,15 @@ export function MarkdownSummary() {
     fetchStreamedData();
   }, []);
 
+  const [maxHeight, setMaxHeight] = useState("0px");
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const scrollHeight = contentRef.current.scrollHeight;
+      setMaxHeight(`${scrollHeight}px`);
+    }
+  }, [text]);
   return (
     <Card className="bg-gray-900/40 border-gray-800 backdrop-blur-sm text-white">
       <CardHeader className="p-6 border-b border-gray-800">
@@ -53,14 +62,14 @@ export function MarkdownSummary() {
       </CardHeader>
       <CardContent className="p-6">
         <div className="prose prose-invert max-w-none">
-          <div className="h-[200px] overflow-y-auto p-4 rounded bg-gray-800 text-gray-300">
-            {text ? (
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {text}
-              </ReactMarkdown>
-            ) : (
-              "Loading..."
-            )}
+          <div
+            ref={contentRef}
+            className="overflow-hidden transition-all duration-300 ease-in-out p-4 rounded bg-gray-800 text-gray-300"
+            style={{
+              maxHeight: text ? maxHeight : "0px",
+            }}
+          >
+            {text ? <ReactMarkdown>{text}</ReactMarkdown> : "Loading..."}
           </div>
         </div>
       </CardContent>

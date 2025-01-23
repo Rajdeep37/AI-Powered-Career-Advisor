@@ -295,9 +295,20 @@ const generateSummary = async (req, res) => {
     interests: user.interests,
   };
   console.log(promptUser);
-  const prompt = `Summarize this user profile and suggest improvements.The following is the user object ${JSON.stringify(
-    promptUser
-  )}. The returned response should be like the user is reading the summary of his profile.The response should be a well structured markdown text.`;
+  const prompt = `
+Summarize this user profile in a clear, concise, and professional manner. The summary should be written as if the user is reading it about themselves. Use well-structured Markdown formatting with appropriate headings, subheadings, and spacing for readability. Highlight key achievements, skills, and current projects, while suggesting areas for improvement where applicable. Maintain a professional and engaging tone.
+${JSON.stringify(promptUser)}
+
+The output should include:
+
+1. Personal Details: Briefly introduce the user's expertise and notable achievements.
+2. Technical Skills: List the user's technical proficiencies.
+3. Current Projects: Summarize the user's ongoing projects and goals.
+4. Achievements: Highlight notable accomplishments such as awards and contributions.
+5. Future Goals: Offer actionable suggestions or areas for growth.
+6. Well-Formatted Markdown: Ensure proper use of headings, subheadings, bullet points, and spacing for clarity.
+
+Return a structured markdown text that aligns with the above guidelines.`;
 
   try {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);

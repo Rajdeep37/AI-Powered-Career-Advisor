@@ -4,7 +4,6 @@ import google.generativeai as genai
 from PyPDF2 import PdfReader
 from flask_cors import CORS
 import os
-# Load environment variables
 load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
@@ -19,7 +18,7 @@ def get_gemini_output(pdf_text, prompt):
     return response.text
 
 def read_pdf(uploaded_file):
-    pdf_reader = PdfReader(uploaded_file.stream)  # Use the stream directly
+    pdf_reader = PdfReader(uploaded_file.stream)  
     pdf_text = ""
     for page in pdf_reader.pages:
         pdf_text += page.extract_text()
@@ -32,7 +31,7 @@ def analyze_resume():
         job_description = request.form.get('job_description', '')
         analysis_option = request.form['analysis_option']
 
-        pdf_text = read_pdf(file)  # Pass the FileStorage object directly
+        pdf_text = read_pdf(file)  
         
         if analysis_option == "1":
             prompt = f"""

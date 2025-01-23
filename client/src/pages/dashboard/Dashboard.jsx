@@ -15,10 +15,10 @@ import { Users } from "lucide-react";
 
 export default function Dashboard() {
   const { user, fetchUser } = useAuthStore();
-  const navigate=useNavigate()
-  const handleUpdate=()=>{
-    navigate("/create-profile")
-  }
+  const navigate = useNavigate();
+  const handleUpdate = () => {
+    navigate("/create-profile");
+  };
   useEffect(() => {
     fetchUser;
     console.log(user);
@@ -30,21 +30,21 @@ export default function Dashboard() {
       description: "Explore opportunities matching your profile",
       icon: Briefcase,
       image: "jobs",
-      url:"/matched-jobs"
+      url: "/matched-jobs",
     },
     {
       title: "Skill Development",
       description: "Enhance your professional toolkit",
       icon: GraduationCap,
       image: "courses",
-      url:"/matched-courses"
+      url: "/matched-courses",
     },
     {
       title: "Resume Analysis",
       description: "Upload your resume and get your profile reviewed!!",
       icon: Users,
       image: "resume",
-      url:"/resume"
+      url: "/resume",
     },
   ];
   return (
@@ -71,10 +71,18 @@ export default function Dashboard() {
 
           <div className="w-full lg:w-3/4 space-y-6">
             <MarkdownSummary />
-            <ActionCard card={cards[0]} />
-            <ActionCard card={cards[1]}/>
-            <ActionCard card={cards[2]}/>
-            <NetworkingSection />
+
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="w-full md:w-1/3">
+                <ActionCard card={cards[0]} />
+              </div>
+              <div className="w-full md:w-1/3">
+                <ActionCard card={cards[1]} />
+              </div>
+              <div className="w-full md:w-1/3">
+                <ActionCard card={cards[2]} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

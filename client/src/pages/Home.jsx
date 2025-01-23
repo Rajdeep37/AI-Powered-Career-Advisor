@@ -33,7 +33,7 @@ export default function Home() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isRegisterOpen,setIsRegisterOpen] = useState(false)
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-black text-white">
       <header className="px-4 lg:px-6 w-full h-16 flex items-center justify-between">
         <div className="flex items-center justify-center">
           <BriefcaseIcon className="h-6 w-6 mr-2" />
@@ -57,7 +57,7 @@ export default function Home() {
         </div>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 ">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
@@ -91,7 +91,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section className="w-full py-12 md:py-24 lg:py-32 dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8">
               How It Works
@@ -144,7 +144,7 @@ export default function Home() {
             <div className="grid gap-10 sm:grid-cols-2">
               <div className="flex items-start space-x-4">
                 <Search className="w-8 h-8 text-primary" />
-                <div>
+                <div className="bg-white text-black rounded-xl p-3">
                   <h3 className="font-bold">Smart Job Matching</h3>
                   <p>
                     Our AI matches you with the most relevant job openings based
@@ -154,7 +154,7 @@ export default function Home() {
               </div>
               <div className="flex items-start space-x-4">
                 <BookOpen className="w-8 h-8 text-primary" />
-                <div>
+                <div className="bg-white text-black rounded-xl p-3">
                   <h3 className="font-bold">Tailored Learning Paths</h3>
                   <p>
                     Discover courses and certifications that align with your
@@ -164,7 +164,7 @@ export default function Home() {
               </div>
               <div className="flex items-start space-x-4">
                 <BarChart2 className="w-8 h-8 text-primary" />
-                <div>
+                <div className="bg-white text-black rounded-xl p-3">
                   <h3 className="font-bold">Career Insights</h3>
                   <p>
                     Gain valuable insights into industry trends, salary
@@ -174,7 +174,7 @@ export default function Home() {
               </div>
               <div className="flex items-start space-x-4">
                 <CheckCircle className="w-8 h-8 text-primary" />
-                <div>
+                <div className="bg-white text-black rounded-xl p-3">
                   <h3 className="font-bold">Progress Tracking</h3>
                   <p>
                     Monitor your career growth and achievements with our
@@ -185,7 +185,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
+        <section className="w-full py-12 md:py-24 lg:py-32  dark:bg-gray-800">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">

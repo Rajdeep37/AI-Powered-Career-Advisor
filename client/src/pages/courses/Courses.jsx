@@ -71,6 +71,7 @@ export default function Courses() {
     fetchCourses()
     console.log(courses)
   }, [])
+  
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="bg-gray-900 py-6">
